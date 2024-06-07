@@ -1,0 +1,43 @@
+##################################
+##########AULA DATASUS UNISC######
+##################################
+
+
+
+# Instalar e carregar o pacote devtools
+install.packages("devtools")
+library(devtools)
+
+# Instalar o pacote read.dbc do GitHub
+devtools::install_github("danicat/read.dbc")
+
+# Alternativamente, usar remotes diretamente
+install.packages("remotes")
+library(remotes)
+remotes::install_github("rfsaldanha/microdatasus")
+
+library(microdatasus)
+
+dados <- fetch_datasus(year_start = 2013, year_end = 2014, uf = "RJ", information_system = "SIM-DO")
+dados <- process_sim(dados)
+
+View(dados)
+
+
+
+basededados <- fetch_datasus(year_start = 2010, year_end = 2010,
+                             uf = "MT", information_system = "SINAN-ZIKA")
+
+
+
+
+#Download: SIM, SINASC, SIH, CNES, SIA, SINAN-DENGUE, SINAN-CHIKUNGUNYA, SINAN-ZIKA, SINAN-MALARIA.
+#Pré-processamento: SIM, SINASC, SIH-RD, CNES-ST, CNES-PF, SINAN-DENGUE, SINAN-CHIKUNGUNYA, SINAN-ZIKA, SINAN-MALARIA.
+
+#Exemplo
+#dados <- fetch_datasus(year_start = 2010, year_end = 2010, uf = "DF", information_system = "SIM-DO")
+#dados <- fetch_datasus(year_start = 2010, year_end = 2011, uf = "CE", information_system = "SIM-DOFET")
+#dados <- fetch_datasus(year_start = 2011, year_end = 2013, information_system = "SIM-DOINF")
+#dados <- fetch_datasus(year_start = 2013, year_end = 2014, uf = "RJ", information_system = "SIM-DO", vars = c("SEXO", "CAUSABAS"))
+#dados <- fetch_datasus(year_start = 2011, month_start = 1, year_end = 2011, month_end = 2, information_system = "SIH-RD")
+
